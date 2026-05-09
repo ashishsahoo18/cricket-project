@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cricket_project.urls'
+ROOT_URLCONF = 'player_project.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cricket_project.wsgi.application'
+WSGI_APPLICATION = 'player_project.wsgi.application'
 
 
 # Database

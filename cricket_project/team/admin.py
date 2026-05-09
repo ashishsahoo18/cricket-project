@@ -1,5 +1,16 @@
 from django.contrib import admin
-from .models import Player
+from .models import Player, PlayerStats
 
-# Register your models here.
-admin.site.register(Player)
+
+class PlayerStatsInline(admin.TabularInline):
+    model = PlayerStats
+    extra = 1
+
+
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country', 'role')
+    inlines = [PlayerStatsInline]
+
+
+admin.site.register(Player, PlayerAdmin)
+admin.site.register(PlayerStats)

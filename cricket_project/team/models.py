@@ -12,11 +12,7 @@ class Player(models.Model):
     test_runs = models.IntegerField(default=0)
     odi_runs = models.IntegerField(default=0)
     t20_runs = models.IntegerField(default=0)
-    
-    matches = models.IntegerField(default=0)
-    runs = models.IntegerField(default=0)
-    wickets = models.IntegerField(default=0)
-    Strike_rate = models.FloatField(default=0)
+
 
     image = models.ImageField(upload_to='players/', blank=True)
 

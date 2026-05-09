@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ player.name }}</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f5f5f5;
+            padding:40px;
+        }
+
+        .card{
+            width:400px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+
+        img{
+            width:250px;
+            border-radius:10px;
+        }
+
+        h1{
+            margin-top:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        {% if player.image %}
+            <img src="{{ player.image.url }}">
+        {% endif %}
+
+        <h1>{{ player.name }}</h1>
+
+        <h3>{{ player.country }}</h3>
+
+        <p><strong>Matches:</strong> {{ player.matches }}</p>
+
+        <p><strong>Runs:</strong> {{ player.runs }}</p>
+
+        <p><strong>Wickets:</strong> {{ player.wickets }}</p>
+
+        <p><strong>Strike Rate:</strong> {{ player.strike_rate }}</p>
+
+    </div>
+
+</body>
+
+</html>

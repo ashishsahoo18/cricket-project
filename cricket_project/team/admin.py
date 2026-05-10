@@ -5,6 +5,7 @@ from .models import Player, PlayerStats
 class PlayerStatsInline(admin.TabularInline):
     model = PlayerStats
     extra = 1
+    readonly_fields = ('average', 'strike_rate')
 
 
 class PlayerAdmin(admin.ModelAdmin):

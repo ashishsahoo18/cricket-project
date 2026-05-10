@@ -30,6 +30,16 @@
         h1{
             margin-top:15px;
         }
+        .stats-container{
+    margin-top:20px;
+}
+
+.stats-box{
+    background:#f2f2f2;
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+}
 
     </style>
 
@@ -47,15 +57,33 @@
 
         <h3>{{ player.country }}</h3>
 
-        <p><strong>Matches:</strong> {{ player.matches }}</p>
+        <div class="stats-container">
 
-        <p><strong>Runs:</strong> {{ player.runs }}</p>
+    {% for stat in player.stats.all %}
 
-        <p><strong>Wickets:</strong> {{ player.wickets }}</p>
+    <div class="stats-box">
 
-        <p><strong>Strike Rate:</strong> {{ player.strike_rate }}</p>
+        <h2>{{ stat.format }}</h2>
+
+        <p><strong>Matches:</strong> {{ stat.matches }}</p>
+
+        <p><strong>Runs:</strong> {{ stat.runs }}</p>
+
+        <p><strong>High Score:</strong> {{ stat.high_score }}</p>
+
+        <p><strong>Average:</strong> {{ stat.average }}</p>
+
+        <p><strong>Strike Rate:</strong> {{ stat.strike_rate }}</p>
+
+        <p><strong>100s:</strong> {{ stat.hundreds }}</p>
+
+        <p><strong>50s:</strong> {{ stat.fifties }}</p>
 
     </div>
+
+    {% endfor %}
+
+</div>
 
 </body>
 

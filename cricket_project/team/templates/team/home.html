@@ -232,49 +232,60 @@
 
     <table border="1">
 
-        <tr>
-            <th>Rank</th>
-            <th>Player</th>
+    <tr>
+        <th>Rank</th>
+        <th>Player</th>
 
-            <th>Test Matches</th>
-            <th>Test Runs</th>
+        <th>Test Matches</th>
+        <th>Test Runs</th>
 
-            <th>ODI Matches</th>
-            <th>ODI Runs</th>
+        <th>ODI Matches</th>
+        <th>ODI Runs</th>
 
-            <th>T20 Matches</th>
-            <th>T20 Runs</th>
+        <th>T20 Matches</th>
+        <th>T20 Runs</th>
 
-            <th>Wickets</th>
-            <th>Strike Rate</th>
-        </tr>
+        <th>Strike Rate</th>
+    </tr>
 
-        {% for player in players %}
+    {% for player in players %}
 
-        <tr>
+    <tr>
 
-            <td>{{ forloop.counter }}</td>
+        <td>{{ forloop.counter }}</td>
 
-            <td>{{ player.name }}</td>
+        <td>{{ player.name }}</td>
 
-            <td>{{ player.matches }}</td>
-            <td>{{ player.runs }}</td>
-
-            <td>{{ player.matches }}</td>
-            <td>{{ player.runs }}</td>
-
-            <td>{{ player.matches }}</td>
-            <td>{{ player.runs }}</td>
-
-            <td>{{ player.wickets }}</td>
-
-            <td>{{ player.strike_rate }}</td>
-
-        </tr>
-
+        <!-- TEST -->
+        {% for stat in player.stats.all %}
+            {% if stat.format == "TEST" %}
+                <td>{{ stat.matches }}</td>
+                <td>{{ stat.runs }}</td>
+            {% endif %}
         {% endfor %}
 
-    </table>
+        <!-- ODI -->
+        {% for stat in player.stats.all %}
+            {% if stat.format == "ODI" %}
+                <td>{{ stat.matches }}</td>
+                <td>{{ stat.runs }}</td>
+            {% endif %}
+        {% endfor %}
+
+        <!-- T20 -->
+        {% for stat in player.stats.all %}
+            {% if stat.format == "T20" %}
+                <td>{{ stat.matches }}</td>
+                <td>{{ stat.runs }}</td>
+                <td>{{ stat.strike_rate }}</td>
+            {% endif %}
+        {% endfor %}
+
+    </tr>
+
+    {% endfor %}
+
+</table>
 
     <!-- Live Search -->
     <script>

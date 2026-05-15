@@ -24,6 +24,7 @@ class PlayerStats(models.Model):
     FORMAT_CHOICES = [
         ('TEST', 'Test'),
         ('ODI', 'ODI'),
+        ('T20','T20'),
         ('IPL', 'IPL'),
     ]
 

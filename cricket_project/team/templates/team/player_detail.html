@@ -7,39 +7,75 @@
     <style>
 
         body{
-            font-family:Arial;
-            background:#f5f5f5;
-            padding:40px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 40px;
         }
 
         .card{
-            width:400px;
-            margin:auto;
-            background:white;
-            padding:20px;
-            border-radius:10px;
-            box-shadow:0 4px 10px rgba(0,0,0,0.1);
-            text-align:center;
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        img{
-            width:250px;
-            border-radius:10px;
+        .card img{
+            width: 250px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         h1{
-            margin-top:15px;
+            margin-top: 15px;
+            margin-bottom: 5px;
         }
-        .stats-container{
-    margin-top:20px;
-}
 
-.stats-box{
-    background:#f2f2f2;
-    padding:15px;
-    margin:15px 0;
-    border-radius:10px;
-}
+        h3{
+            color: gray;
+            margin-bottom: 25px;
+        }
+
+        .stats-container{
+            margin-top: 20px;
+        }
+
+        .stats-box{
+            background: #f2f2f2;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .stats-box h2{
+            text-align: center;
+            color: #0b2a4a;
+            margin-bottom: 15px;
+        }
+
+        .stats-box p{
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .back-btn{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #0b2a4a;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        hr{
+            margin: 15px 0;
+        }
 
     </style>
 
@@ -50,7 +86,9 @@
     <div class="card">
 
         {% if player.image %}
-            <img src="{{ player.image.url }}">
+            <img src="{{ player.image.url }}" alt="{{ player.name }}">
+        {% else %}
+            <img src="https://via.placeholder.com/250x300">
         {% endif %}
 
         <h1>{{ player.name }}</h1>
@@ -59,31 +97,57 @@
 
         <div class="stats-container">
 
-    {% for stat in player.stats.all %}
+            {% for stat in player.stats.all %}
 
-    <div class="stats-box">
+            <div class="stats-box">
 
-        <h2>{{ stat.format }}</h2>
+                <h2>{{ stat.format }}</h2>
 
-        <p><strong>Matches:</strong> {{ stat.matches }}</p>
+                <!-- Batting Stats -->
 
-        <p><strong>Runs:</strong> {{ stat.runs }}</p>
+                <p><strong>Matches:</strong> {{ stat.matches }}</p>
 
-        <p><strong>High Score:</strong> {{ stat.high_score }}</p>
+                <p><strong>Runs:</strong> {{ stat.runs }}</p>
 
-        <p><strong>Average:</strong> {{ stat.average }}</p>
+                <p><strong>High Score:</strong> {{ stat.high_score }}</p>
 
-        <p><strong>Strike Rate:</strong> {{ stat.strike_rate }}</p>
+                <p><strong>Batting Average:</strong> {{ stat.average }}</p>
 
-        <p><strong>100s:</strong> {{ stat.hundreds }}</p>
+                <p><strong>Strike Rate:</strong> {{ stat.strike_rate }}</p>
 
-        <p><strong>50s:</strong> {{ stat.fifties }}</p>
+                <p><strong>100s:</strong> {{ stat.hundreds }}</p>
+
+                <p><strong>50s:</strong> {{ stat.fifties }}</p>
+
+                <hr>
+
+                <!-- Bowling Stats -->
+
+                <p><strong>Wickets:</strong> {{ stat.wickets }}</p>
+
+                <p><strong>Economy:</strong> {{ stat.economy }}</p>
+
+                <p><strong>Bowling Average:</strong> {{ stat.bowling_average }}</p>
+
+                <p><strong>4W:</strong> {{ stat.four_wickets }}</p>
+
+                <p><strong>5W:</strong> {{ stat.five_wickets }}</p>
+
+            </div>
+
+            {% empty %}
+
+            <p>No statistics available.</p>
+
+            {% endfor %}
+
+        </div>
+
+        <a href="/" class="back-btn">
+            ← Back to Home
+        </a>
 
     </div>
-
-    {% endfor %}
-
-</div>
 
 </body>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>All Cricket Players</title>
 
@@ -109,18 +110,20 @@
         table{
             border-collapse:collapse;
             margin:40px auto;
-            width:90%;
+            width:95%;
             background:white;
+            font-size:14px;
         }
 
         table th{
             background:#0b2a4a;
             color:white;
-            padding:12px;
+            padding:10px;
         }
 
         table td{
-            padding:10px;
+            padding:8px;
+            text-align:center;
         }
 
         table tr:nth-child(even){
@@ -146,17 +149,21 @@
         }
 
     </style>
+
 </head>
 
 <body>
 
     <!-- Navbar -->
+
     <div class="navbar">
         <h2>India Cricket Hub 🏏</h2>
     </div>
 
     <!-- Search -->
+
     <div class="search-box">
+
         <form method="GET">
 
             <input 
@@ -171,9 +178,11 @@
             </button>
 
         </form>
+
     </div>
 
     <!-- Filter -->
+
     <div class="filter-box">
 
         <form method="GET">
@@ -185,6 +194,7 @@
                 <option value="Australia">Australia</option>
                 <option value="England">England</option>
                 <option value="New Zealand">New Zealand</option>
+
             </select>
 
             <button type="submit">
@@ -196,9 +206,11 @@
     </div>
 
     <!-- Heading -->
-    <h1>India Cricket Players</h1>
+
+    <h1>All Cricket Players</h1>
 
     <!-- Player Cards -->
+
     <div class="players" id="playerContainer">
 
         {% for player in players %}
@@ -226,92 +238,82 @@
     </div>
 
     <!-- Statistics Table -->
+
     <h2 style="text-align:center;">
         Players Statistics
     </h2>
 
     <table border="1">
 
-    <tr>
-    <th>Rank</th>
-    <th>Player</th>
+        <tr>
 
-    <th>Test Matches</th>
-    <th>Test Runs</th>
-    <th>Test High Score</th>
-    <th>Test 100s</th>
-    <th>Test 50s</th>
-    <th>Test Average</th>
-    <th>Test Strike Rate</th>
+            <th>Rank</th>
+            <th>Player</th>
 
-    <th>ODI Matches</th>
-    <th>ODI Runs</th>
-    <th>ODI High Score</th>
-    <th>ODI 100s</th>
-    <th>ODI 50s</th>
-    <th>ODI Average</th>
-    <th>ODI Strike Rate</th>
+            <th>Format</th>
 
-    <th>T20 Matches</th>
-    <th>T20 Runs</th>
-    <th>T20 High Score</th>
-    <th>T20 100s</th>
-    <th>T20 50s</th>
-    <th>T20 Average</th>
-    <th>T20 Strike Rate</th>
-</tr>
+            <th>Matches</th>
+            <th>Runs</th>
+            <th>High Score</th>
 
-{% for player in players %}
-<tr>
+            <th>Average</th>
+            <th>Strike Rate</th>
 
-    <td>{{ forloop.counter }}</td>
-    <td>{{ player.name }}</td>
+            <th>100s</th>
+            <th>50s</th>
 
-    <!-- TEST -->
-    {% for stat in player.stats.all %}
-        {% if stat.format == "TEST" %}
-            <td>{{ stat.matches }}</td>
-            <td>{{ stat.runs }}</td>
-            <td>{{ stat.high_score }}</td>
-            <td>{{ stat.hundreds }}</td>
-            <td>{{ stat.fifties }}</td>
-            <td>{{ stat.average }}</td>
-            <td>{{ stat.strike_rate }}</td>
-        {% endif %}
-    {% endfor %}
+            <th>Wickets</th>
+            <th>Economy</th>
 
-    <!-- ODI -->
-    {% for stat in player.stats.all %}
-        {% if stat.format == "ODI" %}
-            <td>{{ stat.matches }}</td>
-            <td>{{ stat.runs }}</td>
-            <td>{{ stat.high_score }}</td>
-            <td>{{ stat.hundreds }}</td>
-            <td>{{ stat.fifties }}</td>
-            <td>{{ stat.average }}</td>
-            <td>{{ stat.strike_rate }}</td>
-        {% endif %}
-    {% endfor %}
+            <th>4W</th>
+            <th>5W</th>
 
-    <!-- T20 -->
-    {% for stat in player.stats.all %}
-        {% if stat.format == "T20" %}
-            <td>{{ stat.matches }}</td>
-            <td>{{ stat.runs }}</td>
-            <td>{{ stat.high_score }}</td>
-            <td>{{ stat.hundreds }}</td>
-            <td>{{ stat.fifties }}</td>
-            <td>{{ stat.average }}</td>
-            <td>{{ stat.strike_rate }}</td>
-        {% endif %}
-    {% endfor %}
+        </tr>
 
-</tr>
-{% endfor %}
+        {% for player in players %}
 
-</table>
+            {% for stat in player.stats.all %}
+
+            <tr>
+
+                <td>{{ forloop.counter }}</td>
+
+                <td>{{ player.name }}</td>
+
+                <td>{{ stat.format }}</td>
+
+                <td>{{ stat.matches }}</td>
+
+                <td>{{ stat.runs }}</td>
+
+                <td>{{ stat.high_score }}</td>
+
+                <td>{{ stat.average }}</td>
+
+                <td>{{ stat.strike_rate }}</td>
+
+                <td>{{ stat.hundreds }}</td>
+
+                <td>{{ stat.fifties }}</td>
+
+                <td>{{ stat.wickets }}</td>
+
+                <td>{{ stat.economy }}</td>
+
+                <td>{{ stat.four_wickets }}</td>
+
+                <td>{{ stat.five_wickets }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        {% endfor %}
+
+    </table>
 
     <!-- Live Search -->
+
     <script>
 
         document.getElementById("searchBox").addEventListener("keyup", function(){
@@ -340,6 +342,10 @@
 
                         <p>${player.country}</p>
 
+                        <a href="/player/${player.id}/">
+                            View Details
+                        </a>
+
                     </div>
 
                     `;
@@ -353,4 +359,5 @@
     </script>
 
 </body>
+
 </html>
